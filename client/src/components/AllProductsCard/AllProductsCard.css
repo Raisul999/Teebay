@@ -1,0 +1,20 @@
+.text-silver{
+    color: #a2adb7;
+}
+
+.text-grey{
+    color: #3d4a56
+}
+
+.title{
+    font-size: 2rem;
+}
+
+.icon{
+    cursor: pointer;
+}
+
+.btn-spec{
+    background-color: white;
+    border: none;
+}
