@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
 import { useMutation } from "@apollo/client";
-import { BUY,RENT } from "../../mutations/userMutations";
+import { BUY, RENT } from "../../mutations/userMutations";
 import { useNavigate } from 'react-router-dom';
 const AllProductsCard = ({ product }) => {
     // console.log(product)
@@ -26,17 +26,18 @@ const AllProductsCard = ({ product }) => {
             search: `id=${id}&name=${name}`
         })
     }
-  
+
     const [buyProduct] = useMutation(BUY, {
-         variables:{productID, userID, productName, actionBuy}
+        variables: { productID, userID, productName, actionBuy }
     })
 
     const [rentProduct] = useMutation(RENT, {
-        variables:{productID, userID, productName, actionRent, rentTime}
+        variables: { productID, userID, productName, actionRent, rentTime }
     })
-    
-    const handleBuy = () =>{
-       
+
+
+    const handleBuy = () => {
+
         buyProduct(productID, userID, productName, actionBuy)
         alert('Bought successfully')
     }
@@ -63,7 +64,7 @@ const AllProductsCard = ({ product }) => {
 
                                 </div>
                                 <div className='d-flex justify-content-between mt-4 text-silver'>
-                                    <div>Categories:{product.categories}</div>
+                                    <div>Categories:<span className='text-uppercase mx-1'>{product.categories}</span></div>
 
                                 </div>
 

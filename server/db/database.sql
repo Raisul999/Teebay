@@ -27,11 +27,10 @@ CREATE TABLE products(
 
 CREATE TABLE transactions(
     id SERIAL PRIMARY KEY NOT NULL,
-    product_id INT NOT NULL,
+    product_id INT,
     user_id INT,
     product_name VARCHAR(255) NOT NULL,
     action VARCHAR(255) NOT NULL,
     time VARCHAR(255),
-    FOREIGN KEY (product_id) REFERENCES products(id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );

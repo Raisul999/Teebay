@@ -10,7 +10,7 @@ const {
 
 const pool = require('../db/db')
 
-//Login Type
+//Login Type description
 const LoginType = new GraphQLObjectType({
     name: 'Login',
     fields: () => ({
@@ -20,7 +20,7 @@ const LoginType = new GraphQLObjectType({
     })
 })
 
-//Singup Type
+//Singup Type description
 const SignUpType = new GraphQLObjectType({
     name: 'Signup',
     fields: () => ({
@@ -34,6 +34,7 @@ const SignUpType = new GraphQLObjectType({
     })
 })
 
+//Product Type description
 const ProductType = new GraphQLObjectType({
     name: 'Product',
     fields: () => ({
@@ -48,6 +49,7 @@ const ProductType = new GraphQLObjectType({
     })
 })
 
+// Transaction Type description
 const TransactionType = new GraphQLObjectType({
     name: 'Transaction',
     fields: () => ({
@@ -64,6 +66,7 @@ const TransactionType = new GraphQLObjectType({
 const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
+        //All users
         users: {
             type: new GraphQLList(SignUpType),
             async resolve(parent, args) {
@@ -71,7 +74,7 @@ const RootQuery = new GraphQLObjectType({
                 return data.rows
             }
         },
-
+        //All products
         products: {
             type: new GraphQLList(ProductType),
             async resolve(parent, args) {
@@ -79,7 +82,7 @@ const RootQuery = new GraphQLObjectType({
                 return data.rows
             }
         },
-
+        //Products created by user
         userProducts: {
             type: new GraphQLList(ProductType),
             args: {
@@ -91,7 +94,7 @@ const RootQuery = new GraphQLObjectType({
                 return data.rows
             }
         },
-
+        // Product created by user
         userProduct: {
             type: ProductType,
             args: {
@@ -104,7 +107,8 @@ const RootQuery = new GraphQLObjectType({
                 return data.rows[0]
             }
         },
-
+       
+        // All rented and sold products by all users
         allTransactions:{
             type: new GraphQLList(TransactionType),
             async resolve(parent, args){
@@ -247,22 +251,13 @@ const Mutation = new GraphQLObjectType({
                   VALUES ($1, $2, $3, $4)`, [args.product_id, args.user_id, args.product_name, args.action]);
                 
                 const data = await pool.query(`SELECT * FROM transactions`)
-                console.log(data.rows[0])
+                // console.log(data.rows[0])
                 return data.rows[0]
             }
         }
 
-
-        
-        
-
-
         
     }
-    
-
-
-
 
 })
 

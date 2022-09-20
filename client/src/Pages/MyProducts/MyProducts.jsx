@@ -9,15 +9,15 @@ const MyProducts = () => {
     let userID
     if (!user) {
         navigate('/')
-        
-    } else {
-        
-        userID = Number(user.id)
-        
-    }
-    
 
-     const { data, error, loading } = useQuery(GET_MYPRODUCTS, {
+    } else {
+
+        userID = Number(user.id)
+
+    }
+
+
+    const { data, error, loading } = useQuery(GET_MYPRODUCTS, {
         variables: { userID }
     })
 
@@ -31,24 +31,26 @@ const MyProducts = () => {
     }
     return (
         <>
-            {user ? <div>
-                <h1 className='text-center'>My Products</h1>
-                <div className='d-flex justify-content-end p-4 m-4'>
-                    <button className='btn btn-primary'
-                        onClick={() => navigate('/addProduct')}>
+            {data.userProducts.length>0?<div>
+                {user ? <div>
+                    <h2 className='text-center'>My Products</h2>
+                    <div className='d-flex justify-content-end p-4 m-4'>
+                        <button className='btn btn-primary'
+                            onClick={() => navigate('/addProduct')}>
 
-                        Add Product
-                    </button>
-                </div>
-                {data.userProducts.map((product) => (
-                    <ProductCard
-                        key={product.id}
-                        product={product}
-                    />
-                ))}
-            </div> : <div>You are not authorized</div>}
+                            Add Product
+                        </button>
+                    </div>
+                    {data.userProducts.map((product) => (
+                        <ProductCard
+                            key={product.id}
+                            product={product}
+                        />
+                    ))}
+                </div> : <div>You are not authorized</div>}
+            </div>:<div><h2 className='text-center'>You have added no products</h2></div>}
 
-            {/* <AddProduct/> */}
+          
         </>
     )
 }

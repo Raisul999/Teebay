@@ -9,9 +9,7 @@ const ProductCard = ({ product }) => {
     const navigate = useNavigate()
     const queryParams = new URLSearchParams(window.location.search)
     const id = queryParams.get("id")
-    // const location = queryParams.get("location")
-
-    // const [id, setId] = useSearchParams()
+    
     const user = JSON.parse(localStorage.getItem('user'))
     const userID = Number(user.id)
 
@@ -37,7 +35,7 @@ const ProductCard = ({ product }) => {
     const handleDeleteProduct = () => {
         // console.log(id);
         deleteProduct(id, userID)
-        // window.location.reload()
+        window.location.reload()
     }
 
 
@@ -86,7 +84,7 @@ const ProductCard = ({ product }) => {
 
                                 </div>
                                 <div className='d-flex justify-content-between mt-4 text-silver'>
-                                    <div>Categories:{product.categories}</div>
+                                    <div>Categories:<span className='text-uppercase mx-1'>{product.categories}</span></div>
 
                                     <div className='icon' onClick={() => appendUpdate(product.id)}>
                                         <FiEdit/>

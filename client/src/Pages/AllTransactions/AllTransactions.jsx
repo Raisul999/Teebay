@@ -2,6 +2,7 @@ import TransactionsCard from '../../components/TrnsactionsCard/TransactionsCard'
 import { GET_ALLTRANSACTIONS } from '../../queries/allTransactionsQueries';
 import { useQuery } from '@apollo/client';
 import Spinner from '../../components/Spinner/Spinner';
+
 function AllTransactions() {
     const { data, error, loading } = useQuery(GET_ALLTRANSACTIONS);
 
@@ -15,7 +16,7 @@ function AllTransactions() {
 
     return (
         <>
-            <div>
+            {data.allTransactions.length>0?<div>
                 <h2 className='text-center'>All Tansactions</h2>
                 {data.allTransactions.map((product, i) => (
                     <TransactionsCard
@@ -23,7 +24,7 @@ function AllTransactions() {
                         product={product}
                     />
                 ))}
-            </div>
+            </div>:<div><h2 className='text-center'>No Transactions</h2></div>}
 
         </>
     )

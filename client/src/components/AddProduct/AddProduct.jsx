@@ -11,7 +11,7 @@ const AddProduct = () => {
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState('')
     const [rent, setRent] = useState('')
-    const [time, setTime] = useState('')
+    const [time, setTime] = useState('per hour')
     const user = JSON.parse(localStorage.getItem('user'))
     const userID = Number(user.id)
     const [addProduct,{ error}] = useMutation(ADD_PRODUCT, {
@@ -46,7 +46,7 @@ const AddProduct = () => {
         }
     }
     console.log(categories, title, description, price, rent, time)
-    console.log(userID)
+    // console.log(userID)
     return (
         <>
             <div className='container py-5 h-100'>
@@ -115,7 +115,7 @@ const AddProduct = () => {
                                             <select className="form-select form-select-sm"
                                                 value={time}
                                                 onChange={(e) => setTime(e.target.value)}
-                                            >
+                                            >   
                                                 <option value="per hour">per hour</option>
                                                 <option value="per day">per day</option>
 

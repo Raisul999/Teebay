@@ -13,7 +13,7 @@ const TransactionsCard = ({product}) => {
 
                                 </div>
                                 <div className='d-flex justify-content-between mt-4 text-silver'>
-                                    <div>Status:<span className='text-uppercase'>{product.action}</span></div>
+                                    <div>Status:<span className='text-uppercase mx-1'>{product.action}</span></div>
 
                                 </div>
 
